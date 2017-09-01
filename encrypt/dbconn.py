@@ -1,5 +1,19 @@
 import sqlite3
+'''
+Version:    0.0.1
+Author:     Arpith Vittal Pathange
 
+This class connects to the sqlite db for all your DB operations. I have used sqlite for now as it is easy to use.
+
+Sqlite has following disadventages:
+1. No user support
+2.
+
+Adventages of postgress:
+1. Large support
+2. Huge support for 3rd party , I have no idea but down the line we might integrate with some 3rd party apps.
+
+'''
 
 class Sqlite:
     conn = None
@@ -29,13 +43,5 @@ class Sqlite:
 
 
 
-'''conn = Sqlite()
-conn.dbinsert('icici1', '08', 'sdhf')
-infos = conn.getdata()
 
-
-for info in infos:
-    print str(info)
-
-conn.closedb()'''
 
