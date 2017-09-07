@@ -5,6 +5,8 @@ Author:     Arpith Vittal Pathange
 This class inserts data to tbe db and retrives data form the db by calling dbconn object
 Infos and any errors are logged by calling the logger class
 
+Using PrettyTable to display the information on the console. Its beautifully puts the data on the console.
+
 
 '''
 from prettytable import PrettyTable
