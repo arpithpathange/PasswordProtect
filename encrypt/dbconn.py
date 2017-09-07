@@ -14,11 +14,14 @@ Adventages of postgress:
 
 '''
 import sqlite3
+from logger import logbase
+import sys
 
 
 class Sqlite:
     conn = None
     c = None
+    log = None
 
     def __init__(self):
         self.conn = sqlite3.connect('my_first_db.sqlite')
@@ -26,13 +29,19 @@ class Sqlite:
         self.c = self.conn.cursor()
 
     def dbinsert(self, acc_info, user_info, user_pass, account_no, pin):
-        rows = [acc_info, user_info, user_pass, account_no, pin]
-        self.c.execute('insert into Account values (?,?,?,?,?)', rows)
-        self.conn.commit()
+        try:
+            rows = [acc_info, user_info, user_pass, account_no, pin]
+            self.c.execute('insert into Account values (?,?,?,?,?)', rows)
+            self.conn.commit()
+        except :
+            self.log.logerror("Error in inserting data to the DB in (deb)(dbinsert) -- (class)(sqlite) "+sys.exc_info()[0])
 
     def getdata(self):
-        self.c.execute("SELECT * FROM Account")
-        rows = self.c.fetchall()
+        try:
+            self.c.execute("SELECT * FROM Account")
+            rows = self.c.fetchall()
+        except:
+            self.log.logerror("Error in retriving  data to the DB in (deb)(getdata) -- (class)(sqlite) "+sys.exc_info()[0])
 
         return rows
 
