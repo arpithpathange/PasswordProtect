@@ -1,4 +1,3 @@
-import sqlite3
 '''
 Version:    0.0.1
 Author:     Arpith Vittal Pathange
@@ -14,6 +13,8 @@ Adventages of postgress:
 2. Huge support for 3rd party , I have no idea but down the line we might integrate with some 3rd party apps.
 
 '''
+import sqlite3
+
 
 class Sqlite:
     conn = None
