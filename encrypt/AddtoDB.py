@@ -1,3 +1,12 @@
+'''
+Version:    0.0.1
+Author:     Arpith Vittal Pathange
+
+This class inserts data to tbe db and retrives data form the db by calling dbconn object
+Infos and any errors are logged by calling the logger class
+
+
+'''
 from prettytable import PrettyTable
 from dbconn import Sqlite
 from encryptdata import SafeData
@@ -26,7 +35,12 @@ class AddtoDb:
             self.log.logerror("Error in inserting data to the DB "+sys.exc_info()[0])
 
     def getdata(self, pass_key):
-        datas = self.obj_db.getdata()
+        try:
+            self.log.loginfo("Getting data form the tables")
+            datas = self.obj_db.getdata()
+            self.log.loginfo("Data being fetched from the table")
+        except:
+            self.log.logerror("Error in fetching the data "+ sys.exc_info()[0])
         t = PrettyTable(['Account_info', 'User_name', 'User_pass', 'Account_no', 'Pin'])
         for data in datas:
             lst = list(data)
