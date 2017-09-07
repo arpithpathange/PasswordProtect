@@ -27,6 +27,7 @@ class Sqlite:
         self.conn = sqlite3.connect('my_first_db.sqlite')
         self.conn.text_factory = str
         self.c = self.conn.cursor()
+        self.log = logbase()
 
     def dbinsert(self, acc_info, user_info, user_pass, account_no, pin):
         try:
