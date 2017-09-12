@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import logging
 
 class logbase:
@@ -8,7 +10,7 @@ class logbase:
         logging.basicConfig(
             level=logging.INFO,
             format='%(asctime)s [%(levelname)s] - %(message)s',
-            filename='filename.txt')  # pass explicit filename here
+            filename='/var/log/encrypt.log')  # pass explicit filename here
         self.logger = logging.getLogger()
 
     def logwarning(self,msg):
