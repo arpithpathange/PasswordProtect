@@ -26,7 +26,7 @@ class Sqlite:
     log = None
 
     def __init__(self):
-        self.conn = sqlite3.connect('my_first_db.sqlite')
+        self.conn = sqlite3.connect('account.sqlite')
         self.conn.text_factory = str
         self.c = self.conn.cursor()
         self.log = logbase()
