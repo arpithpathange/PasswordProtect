@@ -61,7 +61,7 @@ class AddtoDb:
 
 
 obj_AddtoDb = AddtoDb()
-#obj_AddtoDb.addtoDb('icici', '123123', 'ad@12345', '32141E13', '123456')
+obj_AddtoDb.addtoDb('icici', '123123', 'ad@12345', '32141E13', '123456')
 print "Enter the Pass_key :"
 pass_key = getpass.getpass('Password:')
 obj_AddtoDb.getdata(pass_key)

@@ -61,3 +61,9 @@ todo items:
 6. Populate requirement.txt.
 7. Publish this as a python package.
 
+
+Account table schema:
+ self.c.execute('''CREATE TABLE `Account` ( `account_name` TEXT,
+                        `User_name` TEXT, `Password` TEXT, `account_no`
+                            TEXT, `pin` TEXT );''')
+
