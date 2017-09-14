@@ -15,6 +15,7 @@ from dbconn import Sqlite
 from encryptdata import SafeData
 from logger import logbase
 import sys
+import getpass
 
 
 class AddtoDb:
@@ -28,37 +29,41 @@ class AddtoDb:
         self.safedata = SafeData()
         self.log = logbase()
 
+
     def addtoDb(self,acc_info, user_info, user_pass, account_no, pin):
         try:
-            self.obj_db.dbinsert(acc_info, user_info, self.safedata.encrypt(user_pass),
-                             account_no, self.safedata.encrypt(pin))
+
+            pass1 = self.safedata.encrypt(user_pass)
+            pin1 = self.safedata.encrypt(pin)
+            self.obj_db.dbinsert( acc_info, user_info, pass1,
+                             account_no, pin1)
             self.log.loginfo("inserted data in to the Db "+ acc_info +" "+user_info+" "+" "+
                         self.safedata.encrypt(user_pass)+" "+account_no+" "+self.safedata.encrypt(pin))
         except :
-            self.log.logerror("Error in inserting data to the DB "+sys.exc_info()[0])
+            self.log.logerror("Error in inserting data to the DB ")
 
     def getdata(self, pass_key):
         try:
             self.log.loginfo("Getting data form the tables")
             datas = self.obj_db.getdata()
             self.log.loginfo("Data being fetched from the table")
+            t = PrettyTable(['Account_info', 'User_name', 'User_pass', 'Account_no', 'Pin'])
+            for data in datas:
+                lst = list(data)
+                lst[2] = self.safedata.decrypt(data[2], pass_key)
+                lst[4] = self.safedata.decrypt(data[4], pass_key)
+                t.add_row(lst)
+            print t
         except:
-            self.log.logerror("Error in fetching the data "+ sys.exc_info()[0])
-        t = PrettyTable(['Account_info', 'User_name', 'User_pass', 'Account_no', 'Pin'])
-        for data in datas:
-            lst = list(data)
-            lst[2] = self.safedata.decrypt(data[2], pass_key)
-            lst[4] = self.safedata.decrypt(data[4], pass_key)
-            t.add_row(lst)
-        print t
+            self.log.logerror("Error in fetching the data ")
 
 
 
 
 obj_AddtoDb = AddtoDb()
-obj_AddtoDb.addtoDb('HDFC', '123123', 'ad@12345', '32141E13', '123456')
+#obj_AddtoDb.addtoDb('icici', '123123', 'ad@12345', '32141E13', '123456')
 print "Enter the Pass_key :"
-pass_key = raw_input()
+pass_key = getpass.getpass('Password:')
 obj_AddtoDb.getdata(pass_key)
 
 

@@ -26,23 +26,32 @@ class Sqlite:
     log = None
 
     def __init__(self):
+
         self.conn = sqlite3.connect('account.sqlite')
         self.conn.text_factory = str
         self.c = self.conn.cursor()
         self.log = logbase()
 
+
+    def say(self, msg):
+        print msg
+
     def dbinsert(self, acc_info, user_info, user_pass, account_no, pin):
         try:
+
             rows = [acc_info, user_info, user_pass, account_no, pin]
             self.c.execute('insert into Account values (?,?,?,?,?)', rows)
             self.conn.commit()
-        except :
-            self.log.logerror("Error in inserting data to the DB in (deb)(dbinsert) -- (class)(sqlite) "+sys.exc_info()[0])
+        except Exception, e:
+            self.log.logerror('Error in inserting data to the DB in (deb)(dbinsert) -- (class)(sqlite)  %s' % e)
+            sys.exc_info()
 
     def getdata(self):
         try:
+
             self.c.execute("SELECT * FROM Account")
             rows = self.c.fetchall()
+
         except:
             self.log.logerror("Error in retriving  data to the DB in (deb)(getdata) -- (class)(sqlite) "+sys.exc_info()[0])
 
