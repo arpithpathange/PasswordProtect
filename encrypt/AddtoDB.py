@@ -58,13 +58,34 @@ class AddtoDb:
             self.log.logerror("Error in fetching the data ")
 
 
-
-
+print "What do you want to do:\n" \
+      "Enter data:   1\n" \
+      "Retrive data: 2\n" \
+      "Delete data : 3\n" \
+      "Any other key to exit"
 obj_AddtoDb = AddtoDb()
-obj_AddtoDb.addtoDb('icici', '123123', 'ad@12345', '32141E13', '123456')
-print "Enter the Pass_key :"
-pass_key = getpass.getpass('Password:')
-obj_AddtoDb.getdata(pass_key)
+choice = raw_input("Please enter your choice: ")
+print choice
+
+if(choice == '1'):
+    print 'You want to enter new data'
+    bank = raw_input("Please enter your bank name: ")
+    user = raw_input("Please enter your bank user: ")
+    password = raw_input("Please enter your bank password: ")
+    bank_acc = raw_input("Please enter your bank Account no: ")
+    pin = raw_input("Please enter your bank pin no: ")
+    obj_AddtoDb.addtoDb(bank, user, password, bank_acc, pin)
+
+elif(choice == '2'):
+    print 'You want to retrive data'
+    print "Enter the Pass_key :"
+    pass_key = getpass.getpass('Password:')
+    obj_AddtoDb.getdata(pass_key)
+elif(choice == '3'):
+    print 'You want to delete data'
+else:
+    print "exit the system"
+    exit(0)
 
 
 
