@@ -10,7 +10,7 @@ if [$GIT_IS_AVAILABLE -eq 0 ]; then
 echo 'Git is installed'
 else
     echo 'Git is not installed '
-    echo 'Running brew command to install git'
+    echo 'Running command to install git'
     if [[ "$OSTYPE" == "linux-gnu" ]]; then
         sudo apt-get install git
     else
@@ -35,12 +35,12 @@ sudo chown $USER /var/log/password/password.log
 echo '============================================================================='
 echo 'Delete any Sqlite db if already present in the system'
 rm PasswordProtect/encrypt/account.sqlite
+echo '============================================================================='
+echo 'Installing all the python dependencies'
+sudo pip install -r requirements.txt
 echo 'Create a new DataBase with the relavent Schema'
 cd PasswordProtect/encrypt
 python init.py
-echo '============================================================================='
-echo 'Installing all the python dependencies'
-cd ..
-sudo pip install -r requirements.txt
+
 
 
