@@ -36,9 +36,11 @@ echo '==========================================================================
 echo 'Delete any Sqlite db if already present in the system'
 rm PasswordProtect/encrypt/account.sqlite
 echo 'Create a new DataBase with the relavent Schema'
-python PasswordProtect/encrypt/init.py
+cd PasswordProtect/encrypt
+python init.py
 echo '============================================================================='
 echo 'Installing all the python dependencies'
-sudo pip install -r PasswordProtect/requirements.txt
+cd ..
+sudo pip install -r requirements.txt
 
 
