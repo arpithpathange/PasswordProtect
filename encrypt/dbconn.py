@@ -27,7 +27,7 @@ class Sqlite:
 
     def __init__(self):
 
-        self.conn = sqlite3.connect('account.sqlite')
+        self.conn = sqlite3.connect('account2.sqlite')
         self.conn.text_factory = str
         self.c = self.conn.cursor()
         self.log = logbase()
